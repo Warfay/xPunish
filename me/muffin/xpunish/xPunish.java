@@ -23,8 +23,6 @@ import me.muffin.xpunish.Miscs.BanListener;
 
 public class xPunish extends JavaPlugin {
 
-	private xPunish main;
-
 	public void onEnable() {
 
 		startUp();
@@ -80,7 +78,7 @@ public class xPunish extends JavaPlugin {
 	
 	private void messagesFile() {
 		
-		File msg = new File(getDataFolder() + "messages.yml");
+		File msg = new File(getDataFolder() + File.separator + "messages.yml");
 		
 		if (!msg.exists()) {
 			
