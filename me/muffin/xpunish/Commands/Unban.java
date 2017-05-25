@@ -38,17 +38,19 @@ public class Unban implements CommandExecutor {
 			
 			if (!(sender.hasPermission("xpunish.unban.use"))) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
+				sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½cYou are not permitted to this command!");
 				
 				return true;
 				
 			}
+
+			//THIS IS A COMMENT, JUST A TEST
 			
 			int length = args.length;
 			
 			if (length == 0) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/unban <player>");
+				sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½cInvalid syntax!\nï¿½8[ï¿½cxPunishï¿½8] ï¿½7/unban <player>");
 				
 				return true;
 				
@@ -61,7 +63,7 @@ public class Unban implements CommandExecutor {
 				
 				if (banned != true) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §6Player §c" + target + " §6is not banned!");
+					sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½6Player ï¿½c" + target + " ï¿½6is not banned!");
 					
 					return true;
 					
@@ -74,7 +76,7 @@ public class Unban implements CommandExecutor {
 					
 					this.saveCustomYml(database, new File("Database.yml"));
 					
-					sender.sendMessage("§8[§cxPunish§8] §6Player §c" + target + " §6has been unbanned!");
+					sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½6Player ï¿½c" + target + " ï¿½6has been unbanned!");
 					
 					return true;
 					
@@ -82,7 +84,7 @@ public class Unban implements CommandExecutor {
 				
 			} else if (length > 1) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/unban <player>");
+				sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½cInvalid syntax!\nï¿½8[ï¿½cxPunishï¿½8] ï¿½7/unban <player>");
 				
 				return true;
 				
