@@ -25,6 +25,8 @@ public class Warn implements CommandExecutor {
 		
 		}
 	}
+
+	//ANOTHER TEST COMMENT
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {
 		
@@ -32,7 +34,7 @@ public class Warn implements CommandExecutor {
 			
 			if (!sender.hasPermission("xpunish.warn")) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
+				sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -42,7 +44,7 @@ public class Warn implements CommandExecutor {
 				
 				if (length == 0) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/warn <player> [reason]");
+					sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½cInvalid syntax!\nï¿½8[ï¿½cxPunishï¿½8] ï¿½7/warn <player> [reason]");
 					
 					return true;
 					
@@ -54,7 +56,7 @@ public class Warn implements CommandExecutor {
 					
 					if (target == null) {
 						
-						sender.sendMessage("§8[§cxPunish§8] §6You can only warn online players!");
+						sender.sendMessage("ï¿½8[ï¿½cxPunishï¿½8] ï¿½6You can only warn online players!");
 						
 						return true;
 						
@@ -65,7 +67,7 @@ public class Warn implements CommandExecutor {
 						database.set("Database." + target.getName() + ".History.Warns", warns + 1);
 						saveCustomYml(database, db);
 						
-						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target.getName() + " §6has been §4§lWarned §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+						Bukkit.broadcast("ï¿½8[ï¿½cxPunishï¿½8] ï¿½6Player ï¿½c" + target.getName() + " ï¿½6has been ï¿½4ï¿½lWarned ï¿½6by ï¿½c" + sender.getName() + "ï¿½6!", "xpunish.notify");
 					
 						return true;
 					
@@ -91,7 +93,7 @@ public class Warn implements CommandExecutor {
 					database.set("Database." + target.getName() + ".History.Warns.Reason", reason);
 					saveCustomYml(database, db);
 					
-					Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target.getName() + " §6has been §4§lWarned §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+					Bukkit.broadcast("ï¿½8[ï¿½cxPunishï¿½8] ï¿½6Player ï¿½c" + target.getName() + " ï¿½6has been ï¿½4ï¿½lWarned ï¿½6due to ï¿½c" + reason + " ï¿½6by ï¿½c" + sender.getName() + "ï¿½6!", "xpunish.notify");
 					
 					return true;
 					
