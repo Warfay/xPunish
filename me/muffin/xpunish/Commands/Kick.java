@@ -44,7 +44,7 @@ public class Kick implements CommandExecutor {
 			
 			if (!(sender.hasPermission("xpunish.kick"))) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -54,7 +54,7 @@ public class Kick implements CommandExecutor {
 			
 			if (length == 0) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/kick <player> [reason]");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/kick <player> [reason]");
 			
 				return true;
 				
@@ -64,7 +64,7 @@ public class Kick implements CommandExecutor {
 				
 				if (target == null) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §6Could not find player §c" + args[0] + "§6!");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6Could not find player Â§c" + args[0] + "Â§6!");
 					
 					return true;
 					
@@ -80,9 +80,9 @@ public class Kick implements CommandExecutor {
 					database.set("Database." + target.getName() + ".History.Kicks.Count", kicks + 1);
 					saveCustomYml(database, db);
 					
-					Bukkit.broadcast(prefix + " §6Player §c" + target.getName() + " §6has been §4§lKicked §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+					Bukkit.broadcast(prefix + " Â§6Player Â§c" + target.getName() + " Â§6has been Â§4Â§lKicked Â§6by Â§c" + sender.getName() + "Â§6!", "xpunish.notify");
 				
-					target.kickPlayer("§4§lYou have been Kicked!\n\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
+					target.kickPlayer("Â§4Â§lYou have been Kicked!\n\nÂ§6Â§lBy: Â§c" + sender.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
 				
 					return true;
 				
@@ -104,14 +104,14 @@ public class Kick implements CommandExecutor {
 			
 				if (target == null) {
 				
-					sender.sendMessage("§8[§cxPunish§8] §6Could not find player §c" + args[0] + "§6!");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6Could not find player Â§c" + args[0] + "Â§6!");
 				
 					return true;
 				
 				} else {
 			
-					Bukkit.broadcastMessage("§8[§cxPunish§8] §6Player §c" + target.getName() + " §6has been §4§lKicked §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!");
-					target.kickPlayer("§4§lYou have been Kicked!\n\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
+					Bukkit.broadcastMessage("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target.getName() + " Â§6has been Â§4Â§lKicked Â§6due to Â§c" + reason + " Â§6by Â§c" + sender.getName() + "Â§6!");
+					target.kickPlayer("Â§4Â§lYou have been Kicked!\n\nÂ§6Â§lReason: Â§c" + reason + "\nÂ§6Â§lBy: Â§c" + sender.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
 					reason = null;
 			
 					return true;

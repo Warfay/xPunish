@@ -39,13 +39,13 @@ public class Actions {
 		
 		if (p == null) {
 			
-			s.sendMessage(prefix + " §cError: §fCouldn't find the target player! Please try again.");
+			s.sendMessage(prefix + " Â§cError: Â§fCouldn't find the target player! Please try again.");
 			
 		} else {
 			
 			if (bc == 1) {
 				
-				Bukkit.broadcastMessage(prefix + "\n§6Player §c" + p.getName() + " §6has been §4§lTemporarily Banned §6due to §c" + r + " §6by §c" + s.getName());
+				Bukkit.broadcastMessage(prefix + "\nÂ§6Player Â§c" + p.getName() + " Â§6has been Â§4Â§lTemporarily Banned Â§6due to Â§c" + r + " Â§6by Â§c" + s.getName());
 				
 			} else if (bc == 2) {
 				
@@ -53,7 +53,7 @@ public class Actions {
 					
 					if (p.hasPermission("xpunish.staff")) {
 						
-						staff.sendMessage(prefix + "\n§6Player §c" + p.getName() + " §6has been §4§lTemporarily Banned §6due to §c" + r + " §6by §c" + s.getName());
+						staff.sendMessage(prefix + "\nÂ§6Player Â§c" + p.getName() + " Â§6has been Â§4Â§lTemporarily Banned Â§6due to Â§c" + r + " Â§6by Â§c" + s.getName());
 						
 					}
 					
@@ -70,7 +70,7 @@ public class Actions {
 			database.set("Database." + p.getName() + ".Ban.Sender", s.getName());
 			saveCustomYml(database, new File("Database.yml"));
 			
-			p.kickPlayer("§4§lYou have been Temporarily Banned!\n\n§6§lEnd: §c" + Tempban.getMessage(banEnd) + "\n§6§lReason: §c" + r + "\n§6§lBy: §c" + s.getName() + "\n\n§8[§cxPunish§8]");
+			p.kickPlayer("Â§4Â§lYou have been Temporarily Banned!\n\nÂ§6Â§lEnd: Â§c" + Tempban.getMessage(banEnd) + "\nÂ§6Â§lReason: Â§c" + r + "\nÂ§6Â§lBy: Â§c" + s.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
 			
 		}
 		

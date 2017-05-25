@@ -18,7 +18,7 @@ public class Report implements CommandExecutor {
 			
 			if (!sender.hasPermission("xpunish.report")) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -28,13 +28,13 @@ public class Report implements CommandExecutor {
 				
 				if (length == 0) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/report <player> <reason>");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/report <player> <reason>");
 					
 					return true;
 					
 				} else if (length == 1) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/report <player> <reason>");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/report <player> <reason>");
 					
 					return true;
 					
@@ -46,7 +46,7 @@ public class Report implements CommandExecutor {
 					
 					if (target == null) {
 						
-						sender.sendMessage("§8[§cxPunish§8] §cYou can only report online players!");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou can only report online players!");
 						
 						return true;
 						
@@ -73,7 +73,7 @@ public class Report implements CommandExecutor {
 					
 					if (target == null) {
 						
-						sender.sendMessage("§8[§cxPunish§8] §cYou can only report online players!");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou can only report online players!");
 						
 						return true;
 						

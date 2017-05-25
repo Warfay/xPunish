@@ -32,7 +32,7 @@ public class Commands implements CommandExecutor {
 			
 			if (!sender.hasPermission("xpunish.info")) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -40,7 +40,7 @@ public class Commands implements CommandExecutor {
 			
 			if (length == 0) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §6xPunish §cv1.0 §6by §cKaakaomuffini\n§7@------------------Commands------------------@\n   §c/xpunish §a>> Show list of commands\n   §c/xpunish info <player> §a>> Info collected from player\n   §c/xpunish server §a>> Server related features\n   §c/xpunish database §a>> Manage the database §c§lCOMING SOON!\n   §c/xpunish verbose <on;off> §a>> Toggle verbose mode\n   §c/xpunish punish §a>> A list of punish commands\n§7@------------------Commands------------------@\n");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6xPunish Â§cv1.0 Â§6by Â§cKaakaomuffini\nÂ§7@------------------Commands------------------@\n   Â§c/xpunish Â§a>> Show list of commands\n   Â§c/xpunish info <player> Â§a>> Info collected from player\n   Â§c/xpunish server Â§a>> Server related features\n   Â§c/xpunish database Â§a>> Manage the database Â§cÂ§lCOMING SOON!\n   Â§c/xpunish verbose <on;off> Â§a>> Toggle verbose mode\n   Â§c/xpunish punish Â§a>> A list of punish commands\nÂ§7@------------------Commands------------------@\n");
 				
 				return true;
 				
@@ -50,7 +50,7 @@ public class Commands implements CommandExecutor {
 				
 				if (length == 1) {
 					
-					sender.sendMessage("\n§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish info <player>");
+					sender.sendMessage("\nÂ§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish info <player>");
 					
 					return true;
 					
@@ -64,7 +64,7 @@ public class Commands implements CommandExecutor {
 						
 						String player2 = args[1];
 						
-						sender.sendMessage("\n§7@------------------" + player2 + "------------------@\n   §6§lName: §c" + player2 + "\n   §6§lOnline: §cFalse\n§7@------------------" + player2 + "------------------@\n");
+						sender.sendMessage("\nÂ§7@------------------" + player2 + "------------------@\n   Â§6Â§lName: Â§c" + player2 + "\n   Â§6Â§lOnline: Â§cFalse\nÂ§7@------------------" + player2 + "------------------@\n");
 						
 						return true;
 						
@@ -87,22 +87,22 @@ public class Commands implements CommandExecutor {
 						String op2 = null;
 						
 						if (flying == true) {	
-							flying2 = "§aTrue";
+							flying2 = "Â§aTrue";
 						}
 						
 						if (flying == false) {
-							flying2 = "§cFalse";
+							flying2 = "Â§cFalse";
 						}
 						
 						if (op == true) {
-							op2 = "§aTrue";
+							op2 = "Â§aTrue";
 						}
 						
 						if (op == false) {
-							op2 = "§cFalse";
+							op2 = "Â§cFalse";
 						}
 						
-						sender.sendMessage("\n§7@------------------" + player.getName() + "------------------@\n   §6§lName: §c" + player.getName() + "\n   §6§lOnline: §aTrue\n   §6§lIP: §c" + ip + "\n   §6§lUUID: §c" + uuid + "\n   §6§lGamemode: §c" + gm + " §6(isFlying: " + flying2 + "§6)\n   §6§lOP: " + op2 + "\n§7@------------------" + player.getName() + "------------------@\n");
+						sender.sendMessage("\nÂ§7@------------------" + player.getName() + "------------------@\n   Â§6Â§lName: Â§c" + player.getName() + "\n   Â§6Â§lOnline: Â§aTrue\n   Â§6Â§lIP: Â§c" + ip + "\n   Â§6Â§lUUID: Â§c" + uuid + "\n   Â§6Â§lGamemode: Â§c" + gm + " Â§6(isFlying: " + flying2 + "Â§6)\n   Â§6Â§lOP: " + op2 + "\nÂ§7@------------------" + player.getName() + "------------------@\n");
 						
 						return true;
 						
@@ -114,7 +114,7 @@ public class Commands implements CommandExecutor {
 				
 				if (length > 1) {
 					
-					sender.sendMessage("\n§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish server");
+					sender.sendMessage("\nÂ§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish server");
 					
 					return true;
 					
@@ -122,7 +122,7 @@ public class Commands implements CommandExecutor {
 					
 					int onlinep = Bukkit.getServer().getOnlinePlayers().size();
 					
-					sender.sendMessage("\n§7@------------------Server------------------@\n   §6§lOnline: §c" + onlinep + "\n   §c/xpunish broadcast <message> §a>> Broadcast a message\n   §c/xpunish kickall §a>> Kick all online players\n§7@------------------Server------------------@");
+					sender.sendMessage("\nÂ§7@------------------Server------------------@\n   Â§6Â§lOnline: Â§c" + onlinep + "\n   Â§c/xpunish broadcast <message> Â§a>> Broadcast a message\n   Â§c/xpunish kickall Â§a>> Kick all online players\nÂ§7@------------------Server------------------@");
 					
 					return true;
 					
@@ -132,13 +132,13 @@ public class Commands implements CommandExecutor {
 				
 				if (length > 1) {
 					
-					sender.sendMessage("\n§8[§cxPunish§8] §cInvalid syntax!\n§8[cxPunish§8]");
+					sender.sendMessage("\nÂ§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[cxPunishÂ§8]");
 					
 					return true;
 					
 				} else {
 					
-					sender.sendMessage("\n§7@------------------Punish------------------@\n   §c/reports [id] §a>> Check all reports or a specific\n   §c/report <player> <reason> §a>> Report a player\n   §c/punish <player> [reason] §a>> Open a Punishment GUI\n   §c/ban <player> [reason] §a>> Ban a player\n   §c/tempban <player> <timespan> [reason] §a>> Tempban a player\n   §c/kick <player> [reason] §aKick a player\n   §c/warn <player> [reason] §a>> Warn a player\n   §c/history <player> §aView a player's history\n§7@------------------Punish------------------@");
+					sender.sendMessage("\nÂ§7@------------------Punish------------------@\n   Â§c/reports [id] Â§a>> Check all reports or a specific\n   Â§c/report <player> <reason> Â§a>> Report a player\n   Â§c/punish <player> [reason] Â§a>> Open a Punishment GUI\n   Â§c/ban <player> [reason] Â§a>> Ban a player\n   Â§c/tempban <player> <timespan> [reason] Â§a>> Tempban a player\n   Â§c/kick <player> [reason] Â§aKick a player\n   Â§c/warn <player> [reason] Â§a>> Warn a player\n   Â§c/history <player> Â§aView a player's history\nÂ§7@------------------Punish------------------@");
 					
 					return true;
 					
@@ -148,13 +148,13 @@ public class Commands implements CommandExecutor {
 				
 				if (length > 2) {
 					
-					sender.sendMessage("\n§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish verbose <on;off>");
+					sender.sendMessage("\nÂ§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish verbose <on;off>");
 					
 					return true;
 					
 				} else if (length == 1) {
 				
-					sender.sendMessage("\n§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish verbose <on;off>");
+					sender.sendMessage("\nÂ§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish verbose <on;off>");
 					
 					return true;
 					
@@ -162,13 +162,13 @@ public class Commands implements CommandExecutor {
 					
 					if (args[1].equalsIgnoreCase("on")) {
 						
-						sender.sendMessage("§8[§cxPunish§8] §aVerbose mode has been enabled!");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§aVerbose mode has been enabled!");
 						
 						return true;
 						
 					} else if (args[1].equalsIgnoreCase("off")) {
 						
-						sender.sendMessage("§8[§cxPunish§8] §cVerbose mode has been disabled!");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cVerbose mode has been disabled!");
 						
 						return true;
 						
@@ -176,7 +176,7 @@ public class Commands implements CommandExecutor {
 						
 						if (args[1] != "off") {
 							
-							sender.sendMessage("\n§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish verbose <on;off>");
+							sender.sendMessage("\nÂ§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish verbose <on;off>");
 							
 							return true;
 							
@@ -190,7 +190,7 @@ public class Commands implements CommandExecutor {
 				
 				if (length < 2) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish broadcast <message>");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish broadcast <message>");
 					
 					return true;
 					
@@ -200,7 +200,7 @@ public class Commands implements CommandExecutor {
 					
 					if (msg == null) {
 						
-						sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/xpunish broadcast <message>");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/xpunish broadcast <message>");
 						
 						return true;
 						
@@ -214,7 +214,7 @@ public class Commands implements CommandExecutor {
 						
 					}
 					
-					Bukkit.broadcastMessage("§8[§6Broadcast§8] §a" + msg);
+					Bukkit.broadcastMessage("Â§8[Â§6BroadcastÂ§8] Â§a" + msg);
 					
 					return true;
 					
@@ -226,11 +226,11 @@ public class Commands implements CommandExecutor {
 				
 				for (Player player : Bukkit.getServer().getOnlinePlayers()) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §6All online players have been Kicked!");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6All online players have been Kicked!");
 					
 					if (player != sender) {
 					
-						player.kickPlayer("§4§lYou have been Kicked!\n\n§8[§cxPunish§8]");
+						player.kickPlayer("Â§4Â§lYou have been Kicked!\n\nÂ§8[Â§cxPunishÂ§8]");
 				
 					}
 						
@@ -240,7 +240,7 @@ public class Commands implements CommandExecutor {
 				
 			} else if (args[0].equalsIgnoreCase("database")) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cThis feature isn't available yet!");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cThis feature isn't available yet!");
 				
 				return true;
 				
@@ -252,7 +252,7 @@ public class Commands implements CommandExecutor {
 				
 			} else {
 				
-				sender.sendMessage("§8[§cxPunish§8] §6Something went wrong... Try §c/xpunish");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6Something went wrong... Try Â§c/xpunish");
 				
 				return true;
 				

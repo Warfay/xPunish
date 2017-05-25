@@ -22,12 +22,20 @@ import me.muffin.xpunish.GUI.ReportGUI;
 import me.muffin.xpunish.Miscs.BanListener;
 
 public class xPunish extends JavaPlugin {
+
+	private xPunish main;
+
+	public void onEnable() {
+
+		startUp();
+
+	}
+
+	public void onDisable() {
+
+	}
 	
 	@SuppressWarnings("unused")
-	private xPunish main;
-	public xPunish(xPunish main) {
-		this.main = main;
-	}
 	
 	public void saveCustomYml(FileConfiguration ymlConfig, File ymlFile) {
 		
@@ -40,18 +48,6 @@ public class xPunish extends JavaPlugin {
 		e.printStackTrace();
 		
 		}
-		
-	}
-	
-	public void onEnable() {
-		
-		startUp();
-		
-	}
-	
-	public void onDisable() {
-		
-		
 		
 	}
 	

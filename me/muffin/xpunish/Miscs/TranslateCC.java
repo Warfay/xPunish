@@ -6,7 +6,7 @@ public class TranslateCC {
 		
 		if (text.contains(colorcode)) {
 			
-			text.replaceAll(colorcode, "ง");
+			text.replaceAll(colorcode, "ยง");
 			
 		}
 		

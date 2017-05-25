@@ -32,7 +32,7 @@ public class History implements CommandExecutor {
 			
 			if (!sender.hasPermission("xpunish.history")) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou're not permitted to this command!");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou're not permitted to this command!");
 				
 				return true;
 				
@@ -42,7 +42,7 @@ public class History implements CommandExecutor {
 				
 				if (length == 0) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/history <player> [clear]");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/history <player> [clear]");
 					
 					return true;
 					
@@ -54,7 +54,7 @@ public class History implements CommandExecutor {
 					int tempbans = database.getInt("Database." + args[0] + ".History.Tempbans.Count");
 					int kicks = database.getInt("Database." + args[0] + ".History.Kicks.Count");
 					
-					sender.sendMessage("§7@--------------------History--------------------@\n    §6§lBans: §c" + bans + "\n    §6§lWarns: §c" + warns + "\n    §c/history " + args[0] + " clear §a>> Clear " + args[0] + "'s history\n§7@--------------------History--------------------@");
+					sender.sendMessage("Â§7@--------------------History--------------------@\n    Â§6Â§lBans: Â§c" + bans + "\n    Â§6Â§lWarns: Â§c" + warns + "\n    Â§c/history " + args[0] + " clear Â§a>> Clear " + args[0] + "'s history\nÂ§7@--------------------History--------------------@");
 					
 					return true;
 					
@@ -66,13 +66,13 @@ public class History implements CommandExecutor {
 						database.set("Database." + args[0] + ".History", null);
 						saveCustomYml(database, new File("Database.yml"));
 						
-						sender.sendMessage("§8[§cxPunish§8] §6History of §c" + args[0] + " §6has been cleared!");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6History of Â§c" + args[0] + " Â§6has been cleared!");
 						
 						return true;
 						
 					} else {
 						
-						sender.sendMessage("§8[§cxPunish§8] §6Did you mean /history <player> clear?");
+						sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§6Did you mean /history <player> clear?");
 						
 						return true;
 						
@@ -80,7 +80,7 @@ public class History implements CommandExecutor {
 					
 				} else {
 					
-					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/history <player> [clear]");
+					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/history <player> [clear]");
 					
 					return true;
 					

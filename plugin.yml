@@ -1,7 +1,7 @@
 name: xPunish
 main: me.muffin.xpunish.xPunish
 version: 1.0
-author: Kaakaomuffini
+authors: [Kaakaomuffini, Fluddershy]
 commands:
     xpunish:
         usage: /xpunish

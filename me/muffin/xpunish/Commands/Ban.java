@@ -41,7 +41,7 @@ public class Ban implements CommandExecutor {
 			
 			if (!sender.hasPermission("xpunish.ban")) {
 				
-				sender.sendMessage("§8[§cxPunihs§8] §cYou are not permitted to this command!");
+				sender.sendMessage("Â§8[Â§cxPunihsÂ§8] Â§cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -51,7 +51,7 @@ public class Ban implements CommandExecutor {
 			
 			if (length == 0) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/ban <player> [reason]");
+				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/ban <player> [reason]");
 				
 				return true;
 				
@@ -77,7 +77,7 @@ public class Ban implements CommandExecutor {
 						database.set("Database." + target2 + ".Ban.Sender", sender.getName());
 						database.set("Database." + target2 + ".History.Bans.Count", bans + 1);
 						this.saveCustomYml(database, new File("Database.yml"));
-						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target2 + " §6 has been §4§lBanned §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+						Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target2 + " Â§6 has been Â§4Â§lBanned Â§6by Â§c" + sender.getName() + "Â§6!", "xpunish.notify");
 						
 						return true;
 						
@@ -87,14 +87,14 @@ public class Ban implements CommandExecutor {
 					
 					int bans = database.getInt("Database." + target.getName() + ".History.Bans.Count");
 					
-					target.kickPlayer("§4§lYou have been Permanently Banned!\n\n§6By: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
+					target.kickPlayer("Â§4Â§lYou have been Permanently Banned!\n\nÂ§6By: Â§c" + sender.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
 					
 					database.set("Database." + target.getName() + ".Ban.Banned", true);
 					database.set("Database." + target.getName() + ".Ban.Type", "Permanent");
 					database.set("Database." + target.getName() + ".Ban.Sender", sender.getName());
 					database.set("Database." + target.getName() + ".History.Bans.Count", bans + 1);
 					this.saveCustomYml(database, new File("Database.yml"));
-					Bukkit.broadcast("§8[§cxPunish§8]", "xpunish.notify");
+					Bukkit.broadcast("Â§8[Â§cxPunishÂ§8]", "xpunish.notify");
 				
 					return true;
 					
@@ -133,7 +133,7 @@ public class Ban implements CommandExecutor {
 						database.set("Database." + target2 + ".Ban.Sender", sender.getName());
 						database.set("Database." + target2 + ".History.Bans.Count", bans + 1);
 						this.saveCustomYml(database, new File("Database.yml"));
-						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target2 + " §6has been §4§lBanned §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+						Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target2 + " Â§6has been Â§4Â§lBanned Â§6due to Â§c" + reason + " Â§6by Â§c" + sender.getName() + "Â§6!", "xpunish.notify");
 						
 						return true;
 						
@@ -143,7 +143,7 @@ public class Ban implements CommandExecutor {
 					
 					int bans = database.getInt("Database." + target.getName() + ".History.Bans.Count");
 					
-					target.kickPlayer("§4§lYou have been Permanently Banned!\n\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
+					target.kickPlayer("Â§4Â§lYou have been Permanently Banned!\n\nÂ§6Â§lReason: Â§c" + reason + "\nÂ§6Â§lBy: Â§c" + sender.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
 					
 					database.set("Database." + target.getName() + ".Ban.Banned", true);
 					database.set("Database." + target.getName() + ".Ban.Type", "Permanent");
@@ -151,7 +151,7 @@ public class Ban implements CommandExecutor {
 					database.set("Database." + target.getName() + ".Ban.Sender", sender.getName());
 					database.set("Database." + target.getName() + ".History.Bans.Count", bans + 1);
 					this.saveCustomYml(database, new File("Database.yml"));
-					Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target + " §6has been §4§lBanned §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+					Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target + " Â§6has been Â§4Â§lBanned Â§6due to Â§c" + reason + " Â§6by Â§c" + sender.getName() + "Â§6!", "xpunish.notify");
 					
 					return true;
 					
