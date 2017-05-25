@@ -43,8 +43,6 @@ public class Unban implements CommandExecutor {
 				return true;
 				
 			}
-
-			//THIS IS A COMMENT, JUST A TEST
 			
 			int length = args.length;
 			

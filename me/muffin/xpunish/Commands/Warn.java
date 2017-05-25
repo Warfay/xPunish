@@ -25,8 +25,6 @@ public class Warn implements CommandExecutor {
 		
 		}
 	}
-
-	//ANOTHER TEST COMMENT
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {
 		
