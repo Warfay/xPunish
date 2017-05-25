@@ -71,7 +71,7 @@ public class xPunish extends JavaPlugin {
 		registerConfig();
 		messagesFile();
 		FileConfiguration messages = YamlConfiguration.loadConfiguration(new File(getDataFolder() + "messages.yml"));
-		FileConfiguration database = YamlConfiguration.loadConfiguration(new File("Database.yml"));
+		FileConfiguration database = YamlConfiguration.loadConfiguration(new File(getDataFolder() + 	"Database.yml"));
 		FileConfiguration players = YamlConfiguration.loadConfiguration(new File("Player.yml"));
 		
 	}
@@ -96,8 +96,8 @@ public class xPunish extends JavaPlugin {
 			FileConfiguration msgfc = YamlConfiguration.loadConfiguration(msg);
 			
 			//Default values
-			msgfc.addDefault("Messages.Prefix", "&8[&cxPunish&8]");
-			msgfc.addDefault("Messages.NoPerm", "&cYou are not permitted to this command!");
+			msgfc.set("Messages.Prefix", "&8[&cxPunish&8]");
+			msgfc.set("Messages.NoPerm", "&cYou are not permitted to this command!");
 			
 			try {
 				
