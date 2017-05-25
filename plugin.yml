@@ -1,0 +1,38 @@
+name: xPunish
+main: me.muffin.xpunish.xPunish
+version: 1.0
+author: Kaakaomuffini
+commands:
+    xpunish:
+        usage: /xpunish
+        description: Main command of xPunish
+    kick:
+        usage: /kick <player> [reason]
+        description: Kick a player
+    ban:
+        usage: /ban <player> [reason]
+        description: Ban a player
+    unban:
+        usage: /unban <player>
+        description: Unban a player
+    tempban:
+        usage: /tempban <player> <time> <unit> [reason]
+        description: Temporarily ban a player
+    punish:
+        usage: /punish <player> [reason]
+        description: Open a punishment GUI
+    pu:
+        usage: /pu <player> [reason]
+        description: Open a punishment GUI
+    punishgui:
+        usage: /punishgui <player> [reason]
+        description: Open a punishment GUI
+    warn:
+        usage: /warn <player> [reason]
+        description: Warn a player
+    history:
+        usage: /history <player> [clear]
+        description: Show the player's punish history
+    report:
+        usage: /report <player> <reason>
+        description: Report a player
