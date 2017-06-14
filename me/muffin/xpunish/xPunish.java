@@ -1,7 +1,11 @@
 package me.muffin.xpunish;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -32,8 +36,6 @@ public class xPunish extends JavaPlugin {
 	public void onDisable() {
 
 	}
-	
-	@SuppressWarnings("unused")
 	
 	public void saveCustomYml(FileConfiguration ymlConfig, File ymlFile) {
 		
@@ -71,8 +73,17 @@ public class xPunish extends JavaPlugin {
 		registerConfig();
 		messagesFile();
 		FileConfiguration messages = YamlConfiguration.loadConfiguration(new File(getDataFolder() + "messages.yml"));
-		FileConfiguration database = YamlConfiguration.loadConfiguration(new File(getDataFolder() + 	"Database.yml"));
-		FileConfiguration players = YamlConfiguration.loadConfiguration(new File("Player.yml"));
+		
+	}
+	
+	private String getCurrentTime() {
+		
+		long ms = System.currentTimeMillis();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		Date date = new Date(ms);
+		String result = sdf.format(date);
+		
+		return result;
 		
 	}
 	
@@ -88,29 +99,48 @@ public class xPunish extends JavaPlugin {
 				
 			} catch (IOException ex) {
 				
-				log("ERROR: Failed to create messages.yml file!");
+				log("ERROR: Failed to create messages.yml file!", this);
 				ex.printStackTrace();
 				
 			}
 			
 			FileConfiguration msgfc = YamlConfiguration.loadConfiguration(msg);
 			
-			//Default values
+			/*Default values*/
+			
+			//General
 			msgfc.set("Messages.Prefix", "&8[&cxPunish&8]");
 			msgfc.set("Messages.NoPerm", "&cYou are not permitted to this command!");
+			//Syntax errors
+			msgfc.set("Messages.Syntax.KickSyntax", "&cInvalid syntax!\n&8[&cxPunish&8] &7/kick <player> [reason]");
+			msgfc.set("Messages.Syntax.PermaBanSyntax", "&cInvalid syntax!\n&8[&cxPunish&8] &7/ban <player> [reason]");
+			msgfc.set("Messages.Syntax.TempBanSyntax", "&cInvalid syntax!\n&8[&cxPunish&8] &7/tempban <player> <time> <unit> [reason]");
+			//Errors
+			msgfc.set("Messages.Errors.PlayerNotFound", "&6Could not find player &c%player%&6!");
+			msgfc.set("Messages.Errors.AlreadyBanned", "&6That player is already banned!");
+			//Punish messages
+			msgfc.set("Messages.Punishment.PermaBanWithoutReason", "&6Player &c%player% &6has been &4&lPermanently Banned &6by &c%sender%&6!");
+			msgfc.set("Messages.Punishment.PermaBanWithReason", "&6Player &c%player% &6has been &4&lPermanently Banned &6due to &c%reason% &6by &c%sender%&6!");
+			msgfc.set("Messages.Punishment.TempBanWithoutReason", "&6Player &c%player% &6has been &4&lTemporarily Banned &6by &c%sender%&6!");
+			msgfc.set("Messages.Punishment.TempBanWithReason", "&6Player &c%player% &6has been &4&lTemporarily Banned &6due to &c%reason% &6by &c%sender%&6!");
+			msgfc.set("Messages.Punishment.KickWithoutReason", "&6Player &c%player% &6has been &4&lKicked &6by &c%sender%&6!");
+			msgfc.set("Messages.Punishment.KickWithReason", "&6Player &c%player% &6has been &4&lKicked &6due to &c%reason% &6by &c%sender%&6!");
+			//Punish screen
+			msgfc.set("Messages.PunishmentScreen.KickWithoutReason", "&4&lYou have been kicked!\n\n&6Reason: &bNo reason specified\n&6Operator: &c%sender%\n\n%prefix%");
+			msgfc.set("Messages.PunishmentScreen.KickWithReason", "&4&lYou have been kicked!\n\n&6Reason: &c%reason%\n&6Operator: &c%sender%\n\n%prefix%");
+			msgfc.set("Messages.PunishmentScreen.PermaBanWithoutReason", arg1);
 			
 			try {
 				
-				msgfc.save(msg);
+				saveCustomYml(msgfc, msg);
 				
-			} catch (IOException exception) {
+			} catch (Exception exception) {
 				
-				log("ERROR: Failed to save messages.yml file!");
-				exception.printStackTrace();
-				
+				log("[ERROR] " + getCurrentTime() + ": Failed to save messages.yml file!", this);
+				exception.printStackTrace(); 
 			}
 			
-			log("Successfully created messages.yml file!");
+			log("[INFO] " + getCurrentTime() + ": Successfully created messages.yml file!", this);
 			
 		}
 		
@@ -120,14 +150,39 @@ public class xPunish extends JavaPlugin {
 		
 		getConfig().options().copyDefaults(true);
 		saveConfig();
-		log("Configuration file has been registered!");
+		log("[INFO] " + getCurrentTime() + ": Configuration file has been registered!", this);
 		
 	}
 	
-	public static void log(String message) {
+	public static void log(String message, xPunish main) {
+
+		main.getLogger().info("[xPunish] " + message);
 		
-		System.out.println("[xPunish] " + message);
-		
-	}
+        try {
+        	
+            File file = new File(main.getDataFolder() + File.separator + "Database" + File.separator + "_log.txt");
+            
+            if (!file.exists()) {
+            	
+                file.createNewFile();
+                
+            }
+ 
+ 
+            FileWriter fw = new FileWriter(file, true);
+ 
+            PrintWriter pw = new PrintWriter(fw);
+ 
+            pw.println("[LOG] " + message);
+            pw.flush();
+            pw.close();
+ 
+        } catch (IOException e) {
+ 
+            e.printStackTrace();
+ 
+        }
+ 
+    }
 	
 }

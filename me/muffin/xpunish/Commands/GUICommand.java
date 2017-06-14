@@ -12,13 +12,14 @@ public class GUICommand implements CommandExecutor {
 
 	private String reason = null;
 	
+	@SuppressWarnings("unused")
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {
 		
 		if ((cmd.getName().equalsIgnoreCase("punish")) || (cmd.getName().equalsIgnoreCase("p")) || (cmd.getName().equalsIgnoreCase("punishgui")) || (cmd.getName().equalsIgnoreCase("pu"))) {
 			
 			if (!sender.hasPermission("xpunish.gui")) {
 				
-				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou are not permitted to this command!");
+				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -28,7 +29,7 @@ public class GUICommand implements CommandExecutor {
 				
 				if (length == 0) {
 					
-					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/punish <player> [reason]");
+					sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/punish <player> [reason]");
 					
 					return true;
 					

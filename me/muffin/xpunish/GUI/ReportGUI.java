@@ -48,18 +48,18 @@ public class ReportGUI implements Listener {
 		//Cancel button
 		ItemStack c = new ItemStack(Material.BED, 1);
 		ItemMeta cm = c.getItemMeta();
-		cm.setDisplayName("Â§cÂ§lCancel");
+		cm.setDisplayName("§c§lCancel");
 		c.setItemMeta(cm);
 		menu.setItem(0, new ItemStack(c));
 		
 		//Info button
 		ItemStack b1 = new ItemStack(Material.BOOK, 1);
 		ItemMeta b1m = b1.getItemMeta();
-		b1m.setDisplayName("Â§cÂ§lReport");
+		b1m.setDisplayName("§c§lReport");
 		List<String> b1l = new ArrayList<>();
 		b1l.add("");
-		b1l.add("Â§6Â§lPlayer: Â§c" + target.getName());
-		b1l.add("Â§6Â§lReason: Â§c" + reason);
+		b1l.add("§6§lPlayer: §c" + target.getName());
+		b1l.add("§6§lReason: §c" + reason);
 		b1m.setLore(b1l);
 		b1.setItemMeta(b1m);
 		menu.setItem(4, new ItemStack(b1));
@@ -67,11 +67,11 @@ public class ReportGUI implements Listener {
 		//Earlier reports
 		ItemStack r = new ItemStack(Material.PAPER, 1);
 		ItemMeta rm = r.getItemMeta();
-		rm.setDisplayName("Â§6Â§lYour reports");
+		rm.setDisplayName("§6§lYour reports");
 		List<String> rl = new ArrayList<>();
 		rl.add("");
-		rl.add("Â§7Check your earlier");
-		rl.add("Â§7reports' status here");
+		rl.add("§7Check your earlier");
+		rl.add("§7reports' status here");
 		rm.setLore(rl);
 		r.setItemMeta(rm);
 		menu.setItem(8, new ItemStack(r));
@@ -105,11 +105,11 @@ public class ReportGUI implements Listener {
 		//Hack report
 		ItemStack hack = new ItemStack(Material.IRON_SWORD, 1);
 		ItemMeta hackm = hack.getItemMeta();
-		hackm.setDisplayName("Â§2Â§lHacked Client");
+		hackm.setDisplayName("§2§lHacked Client");
 		List<String> hackl = new ArrayList<>();
 		hackl.add("");
-		hackl.add("Â§7Report " + target.getName() + " for");
-		hackl.add("Â§7using a hacked client");
+		hackl.add("§7Report " + target.getName() + " for");
+		hackl.add("§7using a hacked client");
 		hackm.setLore(hackl);
 		hack.setItemMeta(hackm);
 		menu.setItem(29, new ItemStack(hack));
@@ -117,12 +117,12 @@ public class ReportGUI implements Listener {
 		//Chat report
 		ItemStack chat = new ItemStack(Material.BOOK_AND_QUILL, 1);
 		ItemMeta chatm = chat.getItemMeta();
-		chatm.setDisplayName("Â§2Â§lChat Offense");
+		chatm.setDisplayName("§2§lChat Offense");
 		List<String> chatl = new ArrayList<>();
 		chatl.add("");
-		chatl.add("Â§7Report " + target.getName() + " for");
-		chatl.add("Â§7using inappropriate language");
-		chatl.add("Â§7or advertising other content");
+		chatl.add("§7Report " + target.getName() + " for");
+		chatl.add("§7using inappropriate language");
+		chatl.add("§7or advertising other content");
 		chatm.setLore(chatl);
 		chat.setItemMeta(chatm);
 		menu.setItem(31, new ItemStack(chat));
@@ -130,11 +130,11 @@ public class ReportGUI implements Listener {
 		//Griefing etc. report
 		ItemStack grief = new ItemStack(Material.TNT, 1);
 		ItemMeta griefm = grief.getItemMeta();
-		griefm.setDisplayName("Â§2Â§lGameplay Offense");
+		griefm.setDisplayName("§2§lGameplay Offense");
 		List<String> griefl = new ArrayList<>();
 		griefl.add("");
-		griefl.add("Â§7Report " + target.getName() + " for");
-		griefl.add("Â§7griefing, abusing bugs etc.");
+		griefl.add("§7Report " + target.getName() + " for");
+		griefl.add("§7griefing, abusing bugs etc.");
 		griefm.setLore(griefl);
 		grief.setItemMeta(griefm);
 		menu.setItem(33, new ItemStack(grief));
@@ -234,7 +234,7 @@ public class ReportGUI implements Listener {
 		
 		if (reports > 10) {
 			
-			sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou have already sent 10 reports!\nÂ§8[Â§cxPunishÂ§8] Â§cPlease wait a week from your first report!");
+			sender.sendMessage("§8[§cxPunish§8] §cYou have already sent 10 reports!\n§8[§cxPunish§8] §cPlease wait a week from your first report!");
 			
 			
 			
@@ -245,11 +245,11 @@ public class ReportGUI implements Listener {
 			//Info button
 			ItemStack b1 = new ItemStack(Material.BOOK, 1);
 			ItemMeta b1m = b1.getItemMeta();
-			b1m.setDisplayName("Â§cÂ§lReport");
+			b1m.setDisplayName("§c§lReport");
 			List<String> b1l = new ArrayList<>();
 			b1l.add("");
-			b1l.add("Â§6Â§lPlayer: Â§c" + target.getName());
-			b1l.add("Â§6Â§lReason: Â§c" + reason);
+			b1l.add("§6§lPlayer: §c" + target.getName());
+			b1l.add("§6§lReason: §c" + reason);
 			b1m.setLore(b1l);
 			b1.setItemMeta(b1m);
 			menu.setItem(4, new ItemStack(b1));
@@ -283,16 +283,16 @@ public class ReportGUI implements Listener {
 			//Info display
 			ItemStack d = new ItemStack(Material.IRON_SWORD, 1);
 			ItemMeta dm = d.getItemMeta();
-			dm.setDisplayName("Â§aÂ§lReport sent!");
+			dm.setDisplayName("§a§lReport sent!");
 			List<String> dl = new ArrayList<>();
 			dl.add("");
-			dl.add("Â§7Your report has been successfully sent");
-			dl.add("Â§7for a staff member to investigate");
+			dl.add("§7Your report has been successfully sent");
+			dl.add("§7for a staff member to investigate");
 			dl.add("");
-			dl.add("Â§7Player: Â§e" + target.getName());
-			dl.add("Â§7Reason: Â§e" + reason);
+			dl.add("§7Player: §e" + target.getName());
+			dl.add("§7Reason: §e" + reason);
 			dl.add("");
-			dl.add("Â§7Status: Â§6Waiting...");
+			dl.add("§7Status: §6Waiting...");
 			dm.setLore(dl);
 			d.setItemMeta(dm);
 			menu.setItem(31, new ItemStack(d));
@@ -300,7 +300,7 @@ public class ReportGUI implements Listener {
 			//Close
 			ItemStack close = new ItemStack(Material.BED, 1);
 			ItemMeta closem = close.getItemMeta();
-			closem.setDisplayName("Â§cÂ§lClose");
+			closem.setDisplayName("§c§lClose");
 			close.setItemMeta(closem);
 			menu.setItem(0, new ItemStack(close));
 		
@@ -343,10 +343,10 @@ public class ReportGUI implements Listener {
 		//Info
 		ItemStack inf = new ItemStack(Material.BOOK, 1);
 		ItemMeta infm = inf.getItemMeta();
-		infm.setDisplayName("Â§6Â§lYour reports");
+		infm.setDisplayName("§6§lYour reports");
 		List<String> infl = new ArrayList<>();
 		infl.add("");
-		infl.add("Â§7Check your past reports' status");
+		infl.add("§7Check your past reports' status");
 		infm.setLore(infl);
 		inf.setItemMeta(infm);
 		menu.setItem(4, new ItemStack(inf));
@@ -354,18 +354,18 @@ public class ReportGUI implements Listener {
 		//Cancel button
 		ItemStack canc = new ItemStack(Material.BED, 1);
 		ItemMeta cancm = canc.getItemMeta();
-		cancm.setDisplayName("Â§cÂ§lCancel");
+		cancm.setDisplayName("§c§lCancel");
 		canc.setItemMeta(cancm);
 		menu.setItem(0, new ItemStack(canc));
 		
 		//Coming Soon!
 		ItemStack cs = new ItemStack(Material.BARRIER, 1);
 		ItemMeta csm = cs.getItemMeta();
-		csm.setDisplayName("Â§cÂ§lComing Soon!");
+		csm.setDisplayName("§c§lComing Soon!");
 		List<String> csl = new ArrayList<>();
 		csl.add("");
-		csl.add("Â§6This feature is not");
-		csl.add("Â§6implemented, yet!");
+		csl.add("§6This feature is not");
+		csl.add("§6implemented, yet!");
 		csm.setLore(csl);
 		cs.setItemMeta(csm);
 		menu.setItem(31, new ItemStack(cs));

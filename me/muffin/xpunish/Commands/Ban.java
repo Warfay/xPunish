@@ -4,23 +4,26 @@ import java.io.File;
 import java.io.IOException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import me.muffin.xpunish.xPunish;
+import me.muffin.xpunish.Miscs.Punish;
+import me.muffin.xpunish.Miscs.getMessagesFile;
+import net.md_5.bungee.api.ChatColor;
 
 public class Ban implements CommandExecutor {
 
 	private String reason = "";
-	@SuppressWarnings("unused")
 	private xPunish main;
 	public Ban(xPunish main) {
 		this.main = main;
 	}
+	
 	
 	public void saveCustomYml(FileConfiguration ymlConfig, File ymlFile) {
 		
@@ -39,9 +42,15 @@ public class Ban implements CommandExecutor {
 		
 		if (cmd.getName().equalsIgnoreCase("ban")) {
 			
+			String prefix = getMessagesFile.getPath("Messages.Prefix", this.main);
+			prefix = ChatColor.translateAlternateColorCodes('&', prefix);
+			
 			if (!sender.hasPermission("xpunish.ban")) {
 				
-				sender.sendMessage("§8[§cxPunihs§8] §cYou are not permitted to this command!");
+				String noperm = getMessagesFile.getPath("Messages.NoPerm", this.main);
+				noperm = ChatColor.translateAlternateColorCodes('&', noperm);
+				
+				sender.sendMessage(prefix + " " + noperm);
 				
 				return true;
 				
@@ -51,52 +60,69 @@ public class Ban implements CommandExecutor {
 			
 			if (length == 0) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/ban <player> [reason]");
+				String syntax = getMessagesFile.getPath("Messages.Syntax.PermaBanSyntax", this.main);
+				syntax = ChatColor.translateAlternateColorCodes('&', syntax);
+				sender.sendMessage(prefix + " " + syntax);
 				
 				return true;
 				
 			} else if (length == 1) {
-
-				FileConfiguration database = YamlConfiguration.loadConfiguration(new File("Database.yml"));
-				FileConfiguration players = YamlConfiguration.loadConfiguration(new File("Players.yml"));
 				
 				Player target = Bukkit.getServer().getPlayer(args[0]);
-				
-				String target2 = args[0];
+				@SuppressWarnings("deprecation")
+				OfflinePlayer target2 = Bukkit.getOfflinePlayer(args[0]);
 				
 				if (target == null) {
 					
-					String uuid = database.getString("Database." + target2 + ".UUID");
-					String uuid2 = players.getString("Players." + target2);
-					int bans = database.getInt("Database." + target2 + ".History.Bans.Count");
+					Punish.createFileOff(target2, this.main);
+					String banned = Punish.PermaBanNoReasonOffline(target2, (Player) sender, this.main);
 					
-					if (uuid == uuid2) {
-					
-						database.set("Database." + target2 + ".Ban.Banned", true);
-						database.set("Database." + target2 + ".Ban.Type", 0);
-						database.set("Database." + target2 + ".Ban.Sender", sender.getName());
-						database.set("Database." + target2 + ".History.Bans.Count", bans + 1);
-						this.saveCustomYml(database, new File("Database.yml"));
-						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target2 + " §6 has been §4§lBanned §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+					if (banned.equals("banned")) {
+
+						String banmsg = getMessagesFile.getPath("Messages.Punishment.PermaBanWithoutReason", this.main);
+						banmsg = ChatColor.translateAlternateColorCodes('&', banmsg);
+						banmsg = banmsg.replaceAll("%player%", target2.getName());
+						banmsg = banmsg.replaceAll("%sender%", sender.getName());
+						
+						Bukkit.broadcast(prefix + " " + banmsg, "xpunish.notify");
 						
 						return true;
 						
-					}	
+					} else {
+						
+						String alreadybanned = getMessagesFile.getPath("Messages.Errors.AlreadyBanned", this.main);
+						alreadybanned = ChatColor.translateAlternateColorCodes('&', alreadybanned);
+						sender.sendMessage(prefix + " " + alreadybanned);
+						
+						return true;
+						
+					}
 					
 				} else {
 					
-					int bans = database.getInt("Database." + target.getName() + ".History.Bans.Count");
+					Punish.createFile(target, this.main);
+					String banned = Punish.PermaBanNoReasonOnline(target, (Player) sender, this.main);
 					
-					target.kickPlayer("§4§lYou have been Permanently Banned!\n\n§6By: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
-					
-					database.set("Database." + target.getName() + ".Ban.Banned", true);
-					database.set("Database." + target.getName() + ".Ban.Type", "Permanent");
-					database.set("Database." + target.getName() + ".Ban.Sender", sender.getName());
-					database.set("Database." + target.getName() + ".History.Bans.Count", bans + 1);
-					this.saveCustomYml(database, new File("Database.yml"));
-					Bukkit.broadcast("§8[§cxPunish§8]", "xpunish.notify");
-				
-					return true;
+					if (banned.equals("banned")) {
+						
+						String banmsg = getMessagesFile.getPath("Messages.Punishment.PermaBanWithoutReason", this.main);
+						banmsg = ChatColor.translateAlternateColorCodes('&', banmsg);
+						banmsg = banmsg.replaceAll("%player%", target2.getName());
+						banmsg = banmsg.replaceAll("%sender%", sender.getName());
+						
+						Bukkit.broadcast(prefix + " " + banmsg, "xpunish.notify");
+						
+						return true;
+						
+					} else {
+						
+						String alreadybanned = getMessagesFile.getPath("Messages.Errors.AlreadyBanned", this.main);
+						alreadybanned = ChatColor.translateAlternateColorCodes('&', alreadybanned);
+						sender.sendMessage(prefix + " " + alreadybanned);
+						
+						return true;
+						
+					}
 					
 				}
 				
@@ -112,28 +138,32 @@ public class Ban implements CommandExecutor {
 					
 				}
 				
-				FileConfiguration database = YamlConfiguration.loadConfiguration(new File("Database.yml"));
-				FileConfiguration players = YamlConfiguration.loadConfiguration(new File("Players.yml"));
-				
 				Player target = Bukkit.getServer().getPlayer(args[0]);
-				
-				String target2 = args[0];
+				@SuppressWarnings("deprecation")
+				OfflinePlayer target2 = Bukkit.getOfflinePlayer(args[0]);	
 				
 				if (target == null) {
 					
-					String uuid = database.getString("Database." + target2 + ".UUID");
-					String uuid2 = players.getString("Players." + target2);
-					int bans = database.getInt("Database." + target2 + ".History.Bans.Count");
+					Punish.createFileOff(target2, this.main);
+					String banned = Punish.PermaBanReasonOffline(target2, (Player) sender, reason, this.main);
 					
-					if (uuid == uuid2) {
+					if (banned.equals("banned")) {
 						
-						database.set("Database." + target2 + ".Ban.Banned", true);
-						database.set("Database." + target2 + ".Ban.Type", "Permanent");
-						database.set("Database." + target2 + ".Ban.Reason", reason);
-						database.set("Database." + target2 + ".Ban.Sender", sender.getName());
-						database.set("Database." + target2 + ".History.Bans.Count", bans + 1);
-						this.saveCustomYml(database, new File("Database.yml"));
-						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target2 + " §6has been §4§lBanned §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!", "xpunish.notify");
+						String banmsg = getMessagesFile.getPath("Messages.Punishment.PermaBanWithReason", this.main);
+						banmsg = ChatColor.translateAlternateColorCodes('&', banmsg);
+						banmsg = banmsg.replaceAll("%player%", target2.getName());
+						banmsg = banmsg.replaceAll("%sender%", sender.getName());
+						banmsg = banmsg.replaceAll("%reason%", reason);
+						
+						Bukkit.broadcast(prefix + " " + banmsg, "xpunish.notify");
+						
+						return true;
+						
+					} else {
+						
+						String alreadybanned = getMessagesFile.getPath("Messages.Errors.AlreadyBanned", this.main);
+						alreadybanned = ChatColor.translateAlternateColorCodes('&', alreadybanned);
+						sender.sendMessage(prefix + " " + alreadybanned);
 						
 						return true;
 						
@@ -141,28 +171,39 @@ public class Ban implements CommandExecutor {
 					
 				} else {
 					
-					int bans = database.getInt("Database." + target.getName() + ".History.Bans.Count");
+					Punish.createFile(target, this.main);
+					String banned = Punish.PermaBanReasonOnline(target, (Player) sender, reason, this.main);
 					
-					target.kickPlayer("§4§lYou have been Permanently Banned!\n\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
-					
-					database.set("Database." + target.getName() + ".Ban.Banned", true);
-					database.set("Database." + target.getName() + ".Ban.Type", "Permanent");
-					database.set("Database." + target.getName() + ".Ban.Reason", reason);
-					database.set("Database." + target.getName() + ".Ban.Sender", sender.getName());
-					database.set("Database." + target.getName() + ".History.Bans.Count", bans + 1);
-					this.saveCustomYml(database, new File("Database.yml"));
-					Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target + " §6has been §4§lBanned §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!", "xpunish.notify");
-					
-					return true;
+					if (banned.equals("banned")) {
+						
+						String banmsg = getMessagesFile.getPath("Messages.Punishment.PermaBanWithReason", this.main);
+						banmsg = ChatColor.translateAlternateColorCodes('&', banmsg);
+						banmsg = banmsg.replaceAll("%player%", target2.getName());
+						banmsg = banmsg.replaceAll("%sender%", sender.getName());
+						banmsg = banmsg.replaceAll("%reason%", reason);
+						
+						Bukkit.broadcast(prefix + " " + banmsg, "xpunish.notify");
+						
+						return true;
+						
+					} else {
+						
+						String alreadybanned = getMessagesFile.getPath("Messages.Errors.AlreadyBanned", this.main);
+						alreadybanned = ChatColor.translateAlternateColorCodes('&', alreadybanned);
+						sender.sendMessage(prefix + " " + alreadybanned);
+						
+						return true;
+						
+					}
 					
 				}
 				
 			}
-			
+				
 		}
 		
 		return false;
 		
 	}
-	
+		
 }

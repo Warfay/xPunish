@@ -54,7 +54,7 @@ public class BanListener implements Listener {
 				
 				if (type == 0) {
 				
-					e.setKickMessage("Â§4Â§lYou have been Permanently Banned!\n\nÂ§6Â§lBy: Â§c" + sender + "\n\nÂ§8[Â§cxPunishÂ§8]");
+					e.setKickMessage("§4§lYou have been Permanently Banned!\n\n§6§lBy: §c" + sender + "\n\n§8[§cxPunish§8]");
 					e.setResult(PlayerLoginEvent.Result.KICK_BANNED);
 				
 				} else if (type == 1) {
@@ -71,14 +71,14 @@ public class BanListener implements Listener {
 						
 					} else {
 					
-						e.setKickMessage("Â§4Â§lYou have been Temporarily Banned!\n\nÂ§6Â§lEnd: Â§c" + Tempban.getMessage(banEnd) + "\nÂ§6Â§lBy: Â§c" + sender + "\n\nÂ§8[Â§cxPunishÂ§8]");
+						e.setKickMessage("§4§lYou have been Temporarily Banned!\n\n§6§lEnd: §c" + Tempban.getMessage(banEnd) + "\n§6§lBy: §c" + sender + "\n\n§8[§cxPunish§8]");
 						e.setResult(PlayerLoginEvent.Result.KICK_BANNED);
 					
 					}
 						
 				} else {
 					
-					e.setKickMessage("Â§cError: Â§fPunishment database misconfiguration!\n\nÂ§fCaused by \"Database.yml\"");
+					e.setKickMessage("§cError: §fPunishment database misconfiguration!\n\n§fCaused by \"Database.yml\"");
 					e.setResult(PlayerLoginEvent.Result.KICK_OTHER);
 					
 				}
@@ -91,7 +91,7 @@ public class BanListener implements Listener {
 				
 				if (type == 0) {
 					
-					e.setKickMessage("Â§4Â§lYou have been Permanently Banned!\n\nÂ§6Â§lReason: Â§c" + reason + "\nÂ§6Â§lBy: Â§c" + sender + "\n\nÂ§8[Â§cxPunishÂ§8]");
+					e.setKickMessage("§4§lYou have been Permanently Banned!\n\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender + "\n\n§8[§cxPunish§8]");
 					e.setResult(PlayerLoginEvent.Result.KICK_BANNED);
 			
 				} else if (type == 1) {
@@ -109,14 +109,14 @@ public class BanListener implements Listener {
 						
 					} else {
 						
-						e.setKickMessage("Â§4Â§lYou have been Temporarily Banned!\n\nÂ§6Â§lEnd: Â§c" + Tempban.getMessage(banEnd) + "\nÂ§6Â§lReason: Â§c" + reason + "\nÂ§6Â§lBy: Â§c" + sender + "\n\nÂ§8[Â§cxPunishÂ§8]");
+						e.setKickMessage("§4§lYou have been Temporarily Banned!\n\n§6§lEnd: §c" + Tempban.getMessage(banEnd) + "\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender + "\n\n§8[§cxPunish§8]");
 						e.setResult(PlayerLoginEvent.Result.KICK_BANNED);
 					
 					}
 						
 				} else {
 					
-					e.setKickMessage("Â§cError: Â§fPunishment database misconfiguration!\n\nÂ§fCaused by \"Database.yml\"!");
+					e.setKickMessage("§cError: §fPunishment database misconfiguration!\n\n§fCaused by \"Database.yml\"!");
 					e.setResult(PlayerLoginEvent.Result.KICK_OTHER);
 					
 				}

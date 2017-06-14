@@ -34,7 +34,7 @@ public class Tempban implements CommandExecutor {
 			
 			if (!sender.hasPermission("xpunish.tempban")) {
 				
-				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cYou are not permitted to this command!");
+				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
 				
 				return true;
 				
@@ -44,23 +44,29 @@ public class Tempban implements CommandExecutor {
 			
 			if (length == 0) {
 				
-				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/tempban <player> <time> <unit> [reason]");
+				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/tempban <player> <time> <unit> [reason]");
 				
 				return true;
 				
-			} else if (length == 1) {
+			}
+			
+			if (length == 1) {
 				
-				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/tempban <player> <time> <unit> [reason]");
-				
-				return true;
-				
-			} else if (length == 2) {
-				
-				sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid syntax!\nÂ§8[Â§cxPunishÂ§8] Â§7/tempban <player> <time> <unit> [reason]");
+				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/tempban <player> <time> <unit> [reason]");
 				
 				return true;
 				
-			} else if (length == 3) {
+			}
+			
+			if (length == 2) {
+				
+				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/tempban <player> <time> <unit> [reason]");
+				
+				return true;
+				
+			}
+			
+			if (length == 3) {
 				
 				Player target = Bukkit.getPlayer(args[0]);
 				String target2 = args[0];
@@ -81,7 +87,7 @@ public class Tempban implements CommandExecutor {
 						database.set("Database." + target2 + ".Ban.End", banEnd);
 						database.set("Database." + target2 + ".Ban.Sender", sender.getName());
 						saveCustomYml(database, new File("Database.yml"));
-						Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target2 + " Â§6has been Â§4Â§lTemporarily Banned Â§6by Â§c" + sender.getName(), "xpunish.notfify");
+						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target2 + " §6has been §4§lTemporarily Banned §6by §c" + sender.getName(), "xpunish.notfify");
 						
 						return true;
 						
@@ -93,8 +99,8 @@ public class Tempban implements CommandExecutor {
 						database.set("Database." + target.getName() + ".Ban.Sender", sender.getName());
 						saveCustomYml(database, new File("Database.yml"));
 						
-						Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target.getName() + " Â§6has been Â§4Â§lTemporarily Banned Â§6by Â§c" + sender.getName(), "xpunish.notfify");
-						target.kickPlayer("Â§4Â§lYou have been Temporarily Banned!\n\nÂ§6Â§lEnd: Â§c" + getMessage(banEnd) + "\nÂ§6Â§lBy: Â§c" + sender.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
+						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target.getName() + " §6has been §4§lTemporarily Banned §6by §c" + sender.getName(), "xpunish.notfify");
+						target.kickPlayer("§4§lYou have been Temporarily Banned!\n\n§6§lEnd: §c" + getMessage(banEnd) + "\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
 						
 						return true;
 						
@@ -102,7 +108,7 @@ public class Tempban implements CommandExecutor {
 					
 				} else {
 					
-					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid unit or time!");
+					sender.sendMessage("§8[§cxPunish§8] §cInvalid unit or time!");
 					
 					return true;
 					
@@ -140,7 +146,7 @@ public class Tempban implements CommandExecutor {
 						database.set("Database." + target2 + ".Ban.Sender", sender.getName());
 						saveCustomYml(database, new File("Database.yml"));
 						
-						Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target2 + " Â§6has been Â§4Â§lTemporarily Banned Â§6due to Â§c" + reason + " Â§6by Â§c" + sender.getName(), "xpunish.notfify");
+						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target2 + " §6has been §4§lTemporarily Banned §6due to §c" + reason + " §6by §c" + sender.getName(), "xpunish.notfify");
 					
 						return true;
 						
@@ -153,8 +159,8 @@ public class Tempban implements CommandExecutor {
 						database.set("Database." + target.getName() + ".Ban.Sender", sender.getName());
 						saveCustomYml(database, new File("Database.yml"));
 						
-						Bukkit.broadcast("Â§8[Â§cxPunishÂ§8] Â§6Player Â§c" + target.getName() + " Â§6has been Â§4Â§lTemporarily Banned Â§6due to Â§c" + reason + " Â§6by Â§c" + sender.getName(), "xpunish.notfify");
-						target.kickPlayer("Â§4Â§lYou have been Temporarily Banned!\n\nÂ§6Â§lEnd: Â§c" + getMessage(banEnd) + "\nÂ§6Â§lReason: Â§c" + reason + "\nÂ§6Â§lBy: Â§c" + sender.getName() + "\n\nÂ§8[Â§cxPunishÂ§8]");
+						Bukkit.broadcast("§8[§cxPunish§8] §6Player §c" + target.getName() + " §6has been §4§lTemporarily Banned §6due to §c" + reason + " §6by §c" + sender.getName(), "xpunish.notfify");
+						target.kickPlayer("§4§lYou have been Temporarily Banned!\n\n§6§lEnd: §c" + getMessage(banEnd) + "\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
 					
 						return true;
 						
@@ -162,7 +168,7 @@ public class Tempban implements CommandExecutor {
 				
 				} else {
 					
-					sender.sendMessage("Â§8[Â§cxPunishÂ§8] Â§cInvalid unit or time!");
+					sender.sendMessage("§8[§cxPunish§8] §cInvalid unit or time!");
 					
 					return true;
 					

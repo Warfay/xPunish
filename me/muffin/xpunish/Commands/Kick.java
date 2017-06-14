@@ -9,16 +9,15 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
 import me.muffin.xpunish.xPunish;
-import me.muffin.xpunish.Miscs.TranslateCC;
+import me.muffin.xpunish.Miscs.Punish;
+import me.muffin.xpunish.Miscs.getMessagesFile;
 
 public class Kick implements CommandExecutor {
 
 	private String reason = "";
-	@SuppressWarnings("unused")
 	private xPunish main;
 	public Kick(xPunish main) {
 		this.main = main;
@@ -37,14 +36,20 @@ public class Kick implements CommandExecutor {
 		}
 		
 	}
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String args[]) {
+		
+		String prefix = getMessagesFile.getPath("Messages.Prefix", this.main);
+		prefix = ChatColor.translateAlternateColorCodes('&', prefix);
 		
 		if (cmd.getName().equalsIgnoreCase("kick")) {
 			
 			if (!(sender.hasPermission("xpunish.kick"))) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cYou are not permitted to this command!");
+				String noperm = getMessagesFile.getPath("Messages.NoPerm", this.main);
+				noperm = ChatColor.translateAlternateColorCodes('&', noperm);
+				
+				sender.sendMessage(prefix + " " + noperm);
 				
 				return true;
 				
@@ -52,9 +57,12 @@ public class Kick implements CommandExecutor {
 			
 			int length = args.length;
 			
+			String syntax = getMessagesFile.getPath("Messages.Syntax.KickSyntax", this.main);
+			syntax = ChatColor.translateAlternateColorCodes('&', syntax);
+			
 			if (length == 0) {
 				
-				sender.sendMessage("§8[§cxPunish§8] §cInvalid syntax!\n§8[§cxPunish§8] §7/kick <player> [reason]");
+				sender.sendMessage(prefix + " " + syntax);
 			
 				return true;
 				
@@ -64,26 +72,29 @@ public class Kick implements CommandExecutor {
 				
 				if (target == null) {
 					
-					sender.sendMessage("§8[§cxPunish§8] §6Could not find player §c" + args[0] + "§6!");
+					String notfound = getMessagesFile.getPath("Messages.Errors.PlayerNotFound", this.main);
+					notfound = ChatColor.translateAlternateColorCodes('&', notfound);
+					notfound = notfound.replaceAll("%player%", args[0]);
+					
+					sender.sendMessage(prefix + " " + notfound);
 					
 					return true;
 					
 				} else {
 				
-					File db = new File("Database.yml");
-					FileConfiguration database = YamlConfiguration.loadConfiguration(db);
-					FileConfiguration messages = YamlConfiguration.loadConfiguration(new File(main.getDataFolder() + "messages.yml"));
-					int kicks = database.getInt("Database." + target.getName() + ".History.Kicks.Count");
+					Punish.createFile(target, this.main);
+					String result = Punish.KickNoReason(target, (Player) sender, this.main);
 					
-					String prefix = messages.getString("Messages.Prefix");
-					TranslateCC.useAlternateColorCodes("&", prefix);
-					database.set("Database." + target.getName() + ".History.Kicks.Count", kicks + 1);
-					saveCustomYml(database, db);
+					if (result.equals("kicked")) {
+						
+						String kicked = getMessagesFile.getPath("Messages.Punishment.KickWithoutReason", this.main);
+						kicked = ChatColor.translateAlternateColorCodes('&', kicked);
+						kicked = kicked.replaceAll("%player%", target.getName());
+						kicked = kicked.replaceAll("%sender%", sender.getName());
+						Bukkit.broadcast(prefix + " " + kicked, "xpunish.notify");
+						
+					}
 					
-					Bukkit.broadcast(prefix + " §6Player §c" + target.getName() + " §6has been §4§lKicked §6by §c" + sender.getName() + "§6!", "xpunish.notify");
-				
-					target.kickPlayer("§4§lYou have been Kicked!\n\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
-				
 					return true;
 				
 				}
@@ -104,16 +115,30 @@ public class Kick implements CommandExecutor {
 			
 				if (target == null) {
 				
-					sender.sendMessage("§8[§cxPunish§8] §6Could not find player §c" + args[0] + "§6!");
+					String notfound = getMessagesFile.getPath("Messages.Errors.PlayerNotFound", this.main);
+					notfound = ChatColor.translateAlternateColorCodes('&', notfound);
+					notfound = notfound.replaceAll("%player%", args[0]);
+					
+					sender.sendMessage(prefix + " " + notfound);
 				
 					return true;
 				
 				} else {
 			
-					Bukkit.broadcastMessage("§8[§cxPunish§8] §6Player §c" + target.getName() + " §6has been §4§lKicked §6due to §c" + reason + " §6by §c" + sender.getName() + "§6!");
-					target.kickPlayer("§4§lYou have been Kicked!\n\n§6§lReason: §c" + reason + "\n§6§lBy: §c" + sender.getName() + "\n\n§8[§cxPunish§8]");
-					reason = null;
-			
+					Punish.createFile(target, this.main);
+					String result = Punish.KickReason(target, (Player) sender, reason, this.main);
+					
+					if (result.equals("kicked")) {
+						
+						String kicked = getMessagesFile.getPath("Messages.Punishment.KickWithReason", this.main);
+						kicked = ChatColor.translateAlternateColorCodes('&', kicked);
+						kicked = kicked.replaceAll("%player%", target.getName());
+						kicked = kicked.replaceAll("%sender%", sender.getName());
+						kicked = kicked.replaceAll("%reason%", reason);
+						Bukkit.broadcast(prefix + " " + kicked, "xpunish.notify");
+						
+					}
+					
 					return true;
 				
 				}
